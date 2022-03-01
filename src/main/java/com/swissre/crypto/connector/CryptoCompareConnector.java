@@ -1,5 +1,6 @@
 package com.swissre.crypto.connector;
 
+import com.swissre.crypto.service.impl.JsonPriceDeserializerImpl;
 import com.swissre.crypto.service.JsonPriceDeserializer;
 
 import java.io.BufferedReader;
@@ -10,11 +11,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
-import java.util.Formatter;
 
 public class CryptoCompareConnector {
 
-    JsonPriceDeserializer jsonPriceDeserializer = new JsonPriceDeserializer();
+    JsonPriceDeserializer jsonPriceDeserializer = new JsonPriceDeserializerImpl();
 
     private final static String URL_TEMPLATE = "https://min-api.cryptocompare.com/data/price?fsym={0}&tsyms={1}";
 

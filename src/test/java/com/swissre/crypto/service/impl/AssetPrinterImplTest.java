@@ -1,4 +1,4 @@
-package com.swissre.crypto.service;
+package com.swissre.crypto.service.impl;
 
 import com.swissre.crypto.connector.CryptoCompareConnector;
 import com.swissre.crypto.ex.FileFormatException;
@@ -13,19 +13,18 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AssetPrinterTest {
+class AssetPrinterImplTest {
 
-    AssetPrinter assetPrinter;
+    AssetPrinterImpl assetPrinter;
 
     @BeforeEach
     public void init() {
-        assetPrinter = new AssetPrinter();
+        assetPrinter = new AssetPrinterImpl();
     }
 
     @Test
     public void printAssetsOk() throws IOException, FileFormatException {
         assetPrinter.cryptoCompareConnector = new MockConnector();
-
         assetPrinter.assetFileReader = new MockReader();
 
         BigDecimal total = assetPrinter.printAssets();
@@ -56,7 +55,7 @@ class AssetPrinterTest {
         }
     }
 
-    private static class MockReader extends AssetFileReader {
+    private static class MockReader extends AssetFileReaderImpl {
         int readFileCounter = 0;
 
         @Override

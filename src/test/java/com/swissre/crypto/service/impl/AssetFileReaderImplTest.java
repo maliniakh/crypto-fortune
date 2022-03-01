@@ -1,8 +1,7 @@
-package com.swissre.crypto.service;
+package com.swissre.crypto.service.impl;
 
 import com.swissre.crypto.ex.FileFormatException;
 import com.swissre.crypto.model.Asset;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,13 +13,13 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AssetFileReaderTest {
+class AssetFileReaderImplTest {
 
-    AssetFileReader assetFileReader;
+    AssetFileReaderImpl assetFileReader;
 
     @BeforeEach
     void setUp() {
-        assetFileReader = new AssetFileReader();
+        assetFileReader = new AssetFileReaderImpl();
     }
 
     @Test

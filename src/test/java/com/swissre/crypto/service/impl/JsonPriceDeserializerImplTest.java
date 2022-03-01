@@ -1,16 +1,16 @@
-package com.swissre.crypto.service;
+package com.swissre.crypto.service.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class JsonPriceDeserializerTest {
+class JsonPriceDeserializerImplTest {
 
-    JsonPriceDeserializer service;
+    JsonPriceDeserializerImpl service;
 
     @BeforeEach
     void init() {
         // actually no need for @BeforeEach initialization (instead of plain class-level field assignment, but it won't hurt either
-        service = new JsonPriceDeserializer();
+        service = new JsonPriceDeserializerImpl();
     }
 
     @Test
