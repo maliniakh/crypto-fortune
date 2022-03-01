@@ -1,4 +1,4 @@
-package com.swissre.crypto.ex;
+package com.example.crypto.ex;
 
 public class ApiException extends Exception {
 

@@ -1,6 +1,6 @@
-package com.swissre.crypto.service;
+package com.example.crypto.service;
 
-import com.swissre.crypto.ex.JsonException;
+import com.example.crypto.ex.JsonException;
 
 import java.math.BigDecimal;
 

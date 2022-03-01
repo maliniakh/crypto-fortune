@@ -1,7 +1,7 @@
-package com.swissre.crypto.service;
+package com.example.crypto.service;
 
-import com.swissre.crypto.ex.FileFormatException;
-import com.swissre.crypto.model.Asset;
+import com.example.crypto.ex.FileFormatException;
+import com.example.crypto.model.Asset;
 
 import java.io.IOException;
 import java.util.List;

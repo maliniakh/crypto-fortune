@@ -1,8 +1,8 @@
-package com.swissre.crypto.connector.impl;
+package com.example.crypto.connector.impl;
 
-import com.swissre.crypto.ex.ApiException;
-import com.swissre.crypto.ex.JsonException;
-import com.swissre.crypto.service.impl.JsonPriceDeserializerImpl;
+import com.example.crypto.ex.ApiException;
+import com.example.crypto.ex.JsonException;
+import com.example.crypto.service.impl.JsonPriceDeserializerImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

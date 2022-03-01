@@ -1,7 +1,7 @@
-package com.swissre.crypto.connector;
+package com.example.crypto.connector;
 
-import com.swissre.crypto.ex.ApiException;
-import com.swissre.crypto.ex.JsonException;
+import com.example.crypto.ex.ApiException;
+import com.example.crypto.ex.JsonException;
 
 import java.io.IOException;
 import java.math.BigDecimal;

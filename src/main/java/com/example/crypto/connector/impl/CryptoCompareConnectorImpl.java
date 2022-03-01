@@ -1,9 +1,9 @@
-package com.swissre.crypto.connector.impl;
+package com.example.crypto.connector.impl;
 
-import com.swissre.crypto.connector.CryptoCompareConnector;
-import com.swissre.crypto.ex.ApiException;
-import com.swissre.crypto.ex.JsonException;
-import com.swissre.crypto.service.JsonPriceDeserializer;
+import com.example.crypto.connector.CryptoCompareConnector;
+import com.example.crypto.ex.ApiException;
+import com.example.crypto.ex.JsonException;
+import com.example.crypto.service.JsonPriceDeserializer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
