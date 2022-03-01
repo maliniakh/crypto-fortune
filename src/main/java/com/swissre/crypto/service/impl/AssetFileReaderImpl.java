@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AssetFileReaderImpl implements AssetFileReader {
+
     /**
      * Reads Bob's file. White characters and empty lines are ignored
      * @param path Path to file

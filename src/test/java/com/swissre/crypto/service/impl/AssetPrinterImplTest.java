@@ -1,8 +1,9 @@
 package com.swissre.crypto.service.impl;
 
-import com.swissre.crypto.connector.CryptoCompareConnector;
+import com.swissre.crypto.connector.CryptoCompareConnectorImpl;
 import com.swissre.crypto.ex.FileFormatException;
 import com.swissre.crypto.model.Asset;
+import com.swissre.crypto.service.JsonPriceDeserializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +20,11 @@ class AssetPrinterImplTest {
 
     @BeforeEach
     public void init() {
-        assetPrinter = new AssetPrinterImpl();
+        assetPrinter = new AssetPrinterImpl(new MockConnector(null), new MockReader());
     }
 
     @Test
     public void printAssetsOk() throws IOException, FileFormatException {
-        assetPrinter.cryptoCompareConnector = new MockConnector();
-        assetPrinter.assetFileReader = new MockReader();
-
         BigDecimal total = assetPrinter.printAssets();
         assertEquals(new BigDecimal(3 * 11 + 13 * 5 + 7 * 17), total);
 
@@ -36,8 +34,12 @@ class AssetPrinterImplTest {
     }
 
     // technically it should be callled spy instead of mock
-    private static class MockConnector extends CryptoCompareConnector {
+    private static class MockConnector extends CryptoCompareConnectorImpl {
         int getPriceCounter = 0;
+
+        public MockConnector(JsonPriceDeserializer jsonPriceDeserializer) {
+            super(jsonPriceDeserializer);
+        }
 
         @Override
         public BigDecimal getPrice(String inSym, String outSym) throws IOException {

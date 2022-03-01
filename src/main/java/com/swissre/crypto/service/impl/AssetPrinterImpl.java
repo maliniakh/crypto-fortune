@@ -1,6 +1,6 @@
 package com.swissre.crypto.service.impl;
 
-import com.swissre.crypto.connector.CryptoCompareConnector;
+import com.swissre.crypto.connector.CryptoCompareConnectorImpl;
 import com.swissre.crypto.ex.FileFormatException;
 import com.swissre.crypto.model.Asset;
 import com.swissre.crypto.service.AssetFileReader;
@@ -16,9 +16,15 @@ public class AssetPrinterImpl implements AssetPrinter {
 
     // todo: constructor injection
 
-    CryptoCompareConnector cryptoCompareConnector = new CryptoCompareConnector();
 
-    AssetFileReader assetFileReader = new AssetFileReaderImpl();
+    public AssetPrinterImpl(CryptoCompareConnectorImpl cryptoCompareConnector, AssetFileReader assetFileReader) {
+        this.cryptoCompareConnector = cryptoCompareConnector;
+        this.assetFileReader = assetFileReader;
+    }
+
+    CryptoCompareConnectorImpl cryptoCompareConnector;
+
+    AssetFileReader assetFileReader;
 
     private static final String FILENAME = "bobs_crypto.txt";
 
