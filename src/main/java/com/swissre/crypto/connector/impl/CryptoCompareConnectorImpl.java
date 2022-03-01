@@ -1,5 +1,8 @@
-package com.swissre.crypto.connector;
+package com.swissre.crypto.connector.impl;
 
+import com.swissre.crypto.connector.CryptoCompareConnector;
+import com.swissre.crypto.ex.ApiException;
+import com.swissre.crypto.ex.JsonException;
 import com.swissre.crypto.service.JsonPriceDeserializer;
 
 import java.io.BufferedReader;
@@ -11,7 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 
-public class CryptoCompareConnectorImpl {
+public class CryptoCompareConnectorImpl implements CryptoCompareConnector {
 
     JsonPriceDeserializer jsonPriceDeserializer;
 
@@ -21,7 +24,8 @@ public class CryptoCompareConnectorImpl {
         this.jsonPriceDeserializer = jsonPriceDeserializer;
     }
 
-    public BigDecimal getPrice(String inSym, String outSym) throws IOException {
+    @Override
+    public BigDecimal getPrice(String inSym, String outSym) throws IOException, ApiException, JsonException {
         URL url;
 
         url = getUrl(inSym, outSym);
@@ -32,7 +36,7 @@ public class CryptoCompareConnectorImpl {
         if (responseCode != HttpURLConnection.HTTP_OK) {
             // IOException is definitely not the best suited exception here, but I think it's just
             // pragmatic here not to use create a separate one here
-            throw new IOException("Unexpected response code from API (" + responseCode + ") - (body: " + response + ")");
+            throw new ApiException("Unexpected response code from API (" + responseCode + ") - (body: " + response + ")");
         }
 
         return jsonPriceDeserializer.readPrice(response);

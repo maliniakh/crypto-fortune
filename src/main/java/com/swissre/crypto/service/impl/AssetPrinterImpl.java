@@ -1,7 +1,9 @@
 package com.swissre.crypto.service.impl;
 
-import com.swissre.crypto.connector.CryptoCompareConnectorImpl;
+import com.swissre.crypto.connector.CryptoCompareConnector;
+import com.swissre.crypto.ex.ApiException;
 import com.swissre.crypto.ex.FileFormatException;
+import com.swissre.crypto.ex.JsonException;
 import com.swissre.crypto.model.Asset;
 import com.swissre.crypto.service.AssetFileReader;
 import com.swissre.crypto.service.AssetPrinter;
@@ -14,15 +16,7 @@ import static java.math.RoundingMode.HALF_EVEN;
 
 public class AssetPrinterImpl implements AssetPrinter {
 
-    // todo: constructor injection
-
-
-    public AssetPrinterImpl(CryptoCompareConnectorImpl cryptoCompareConnector, AssetFileReader assetFileReader) {
-        this.cryptoCompareConnector = cryptoCompareConnector;
-        this.assetFileReader = assetFileReader;
-    }
-
-    CryptoCompareConnectorImpl cryptoCompareConnector;
+    CryptoCompareConnector cryptoCompareConnector;
 
     AssetFileReader assetFileReader;
 
@@ -33,13 +27,18 @@ public class AssetPrinterImpl implements AssetPrinter {
      */
     private static final String SYMBOL = "EUR";
 
+    public AssetPrinterImpl(CryptoCompareConnector cryptoCompareConnector, AssetFileReader assetFileReader) {
+        this.cryptoCompareConnector = cryptoCompareConnector;
+        this.assetFileReader = assetFileReader;
+    }
+
     /**
      * @throws IOException Error when reading the file or unexpected response from the API.
      * @throws FileFormatException Malformed file.
      * @return Sum of the assets' values.
      */
     @Override
-    public BigDecimal printAssets() throws IOException, FileFormatException {
+    public BigDecimal printAssets() throws IOException, FileFormatException, ApiException, JsonException {
         List<Asset> assets = assetFileReader.readFile(FILENAME);
 
         BigDecimal sum = BigDecimal.valueOf(0);

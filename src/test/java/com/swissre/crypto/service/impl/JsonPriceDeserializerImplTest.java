@@ -1,5 +1,7 @@
 package com.swissre.crypto.service.impl;
 
+import com.swissre.crypto.ex.JsonException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,12 +16,26 @@ class JsonPriceDeserializerImplTest {
     }
 
     @Test
-    void readPriceOk() {
+    void readPriceOk() throws JsonException {
         service.readPrice("{\"EUR\":13430.11}");
     }
 
     @Test
-    void readPriceWithJsonFormatted() {
+    void readPriceWithJsonFormatted() throws JsonException {
         service.readPrice("{\n\"EUR\":   13430.11  \n}   \n");
+    }
+
+    @Test
+    void malformedJson() {
+        Assertions.assertThrows(JsonException.class, () -> {
+            service.readPrice("{\"EUR\";13430.11}");
+        });
+    }
+
+    @Test
+    void wrongNumberFormatInJson() {
+        Assertions.assertThrows(JsonException.class, () -> {
+            service.readPrice("{\"USD\", \"not a number\"}");
+        });
     }
 }

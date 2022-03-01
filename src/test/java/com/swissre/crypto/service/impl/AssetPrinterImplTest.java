@@ -1,7 +1,9 @@
 package com.swissre.crypto.service.impl;
 
-import com.swissre.crypto.connector.CryptoCompareConnectorImpl;
+import com.swissre.crypto.connector.impl.CryptoCompareConnectorImpl;
+import com.swissre.crypto.ex.ApiException;
 import com.swissre.crypto.ex.FileFormatException;
+import com.swissre.crypto.ex.JsonException;
 import com.swissre.crypto.model.Asset;
 import com.swissre.crypto.service.JsonPriceDeserializer;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +26,7 @@ class AssetPrinterImplTest {
     }
 
     @Test
-    public void printAssetsOk() throws IOException, FileFormatException {
+    public void printAssetsOk() throws IOException, FileFormatException, ApiException, JsonException {
         BigDecimal total = assetPrinter.printAssets();
         assertEquals(new BigDecimal(3 * 11 + 13 * 5 + 7 * 17), total);
 
